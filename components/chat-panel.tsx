@@ -81,7 +81,18 @@ export function ChatPanel({
                       display: <UserMessage>{example.message}</UserMessage>
                     }
                   ])
-
+                  if (
+                    example.message == 'What are the trending memecoins today?'
+                  ) {
+                    const responseMessage = await submitUserMessage(
+                      `You are the chatbot of a web3 wallet. I will add the message written by the user to this message between [User] [/User] tags. You will understand this message and return me a json structure. The fields in this json structure will be as follows. 1) type: Transaction type will be found in this section. The values ​​it can take can be "invoke", "call" or "transfer" as a string. If the user wants to perform an operation that requires a smart contract call, this part will be invoked. If the user wants to perform an operation that requires reading data from a smart contract, it will receive the value "call". If the user only wants to transfer eth, the transfer will happen. 2) arguments: In this section, if a transaction call will be made or a call will be made or a transfer will be made, there must be relevant arguments. With Starknetkit I should be able to make calls directly using these arguments. 3) chatResponse: In this section, give a simple informative message to the user. It might be a message like "You want to do this, I'm starting a transaction." Customize this message depending on what the user wants to do. Here is the user's message: [User]${'I want to send 0.1 ether to address 0xFD23c55fc75e1eaAdBB5493639C84b54B331A396'}[/User]`
+                    )
+                    setMessages(currentMessages => [
+                      ...currentMessages,
+                      responseMessage
+                    ])
+                    return
+                  }
                   const responseMessage = await submitUserMessage(
                     example.message
                   )

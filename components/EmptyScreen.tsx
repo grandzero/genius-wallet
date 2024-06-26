@@ -1,10 +1,4 @@
 'use client'
-import { UseChatHelpers } from 'ai/react'
-
-import { Button } from '@/components/ui/button'
-import { ExternalLink } from '@/components/external-link'
-import { IconArrowRight } from '@/components/ui/icons'
-import { useEffect } from 'react'
 import { useWallet } from '@/lib/contexts/wallet-context'
 
 export function EmptyScreen() {
